@@ -1,10 +1,8 @@
 export class Slogan {
-  id: string
   province: string
   slogan: string
 
-  constructor(id: string, province: string, slogan: string) {
-    this.id = id
+  constructor(province: string, slogan: string) {
     this.province = province
     this.slogan = slogan
   }
