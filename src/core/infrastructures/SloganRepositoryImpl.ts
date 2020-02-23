@@ -7,13 +7,15 @@ class SloganDTO {
 }
 
 export class SloganRepositoryImpl implements SloganRepository {
-  jsonUrl = "..."
+  jsonUrl =
+    "https://gist.githubusercontent.com/ichsarut/357f38a3cde12de454089368f105a0fd/raw/7e2e8b346b79dcb0f36adf05bfffeef8ae757cfe/slogans.json"
 
   async GetSlogans(): Promise<Slogan[]> {
     const resp = await fetch(this.jsonUrl)
     const jsonData = await resp.json()
-    return jsonData.map(
-      (slg: SloganDTO) => new Slogan(slg.province, slg.slogan)
-    )
+
+    return Object.keys(jsonData).map(key => {
+      return new Slogan(jsonData[key].province, jsonData[key].slogan)
+    })
   }
 }
